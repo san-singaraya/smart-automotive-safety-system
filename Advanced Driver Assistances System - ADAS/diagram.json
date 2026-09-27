@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "author": "YUVA Internship - ADAS Project",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic",
+      "top": -152.1,
+      "left": 351.1,
+      "attrs": { "distance": "100" }
+    },
+    { "type": "wokwi-mpu6050", "id": "mpu", "top": -15.38, "left": 271.12, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": 300, "left": 300, "attrs": { "pins": "i2c" } },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": -100,
+      "left": 600,
+      "attrs": { "volume": "0.5" }
+    },
+    { "type": "wokwi-led", "id": "led", "top": -3.6, "left": 531.8, "attrs": { "color": "red" } },
+    { "type": "wokwi-relay-module", "id": "relay", "top": 201.8, "left": 633.6, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:5", "ultrasonic:TRIG", "green", [] ],
+    [ "esp:18", "ultrasonic:ECHO", "blue", [] ],
+    [ "esp:5V", "ultrasonic:VCC", "red", [] ],
+    [ "esp:GND.1", "ultrasonic:GND", "black", [] ],
+    [ "esp:21", "mpu:SDA", "green", [] ],
+    [ "esp:22", "mpu:SCL", "blue", [] ],
+    [ "esp:3V3", "mpu:VCC", "red", [] ],
+    [ "esp:GND.1", "mpu:GND", "black", [] ],
+    [ "esp:21", "lcd:SDA", "green", [] ],
+    [ "esp:22", "lcd:SCL", "blue", [] ],
+    [ "esp:5V", "lcd:VCC", "red", [] ],
+    [ "esp:GND.1", "lcd:GND", "black", [] ],
+    [ "esp:25", "buzzer:1", "purple", [] ],
+    [ "esp:GND.1", "buzzer:2", "black", [] ],
+    [ "esp:26", "led:A", "orange", [] ],
+    [ "esp:GND.1", "led:C", "black", [] ],
+    [ "esp:27", "relay:IN", "yellow", [] ],
+    [ "esp:5V", "relay:VCC", "red", [] ],
+    [ "buzzer:1", "esp:D25", "green", [ "v0" ] ],
+    [ "led:A", "esp:D26", "green", [ "v0" ] ],
+    [ "relay:GND", "esp:GND.1", "black", [ "h-508.8", "v-48.4" ] ],
+    [ "relay:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "relay:IN", "esp:D27", "green", [ "h-672", "v-105.8" ] ],
+    [ "ultrasonic:TRIG", "esp:D5", "green", [ "v0" ] ],
+    [ "ultrasonic:ECHO", "esp:D18", "green", [ "v122.7", "h-297.3" ] ],
+    [ "lcd:VCC", "esp:3V3", "red", [ "h0" ] ],
+    [ "lcd:SDA", "esp:D21", "green", [ "h-179.2", "v-293.4" ] ],
+    [ "esp:D22", "lcd:SCL", "green", [ "h138.7", "v340.4" ] ],
+    [ "mpu:SDA", "esp:D21", "yellow", [ "v0" ] ],
+    [ "mpu:SCL", "esp:D22", "blue", [ "v0" ] ],
+    [ "ultrasonic:VCC", "esp:3V3", "red", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
